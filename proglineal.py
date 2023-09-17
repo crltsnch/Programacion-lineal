@@ -28,3 +28,19 @@ solver.Maximize(espadachin*70 + arquero*95 + jinete*230)
 
 '''Calculamos la solución óptima con solver.Solve()'''
 
+#Solucionar el problema
+status = solver.Solve()
+
+#Si una solucion óptima ha sido encontrada, imiprime los resultados
+if status == pywraplp.Solver.OPTIMAL:
+    print('================= Solución =================')
+    print(f'Resuelto en {solver.wall_time():.2f} milisegundos en {solver.iterations()} iteraciones')
+    print()
+    print(f'Poder óptimo = {solver.Objective().Value()} 💪poder')  
+    print('Ejército:')  
+    print(f' - 🗡️Espadachín = {espadachin.solution_value()}')  
+    print(f' - 🏹Arquero = {arquero.solution_value()}')  
+    print(f' - 🐎Jinete = {jinete.solution_value()}')
+else:  
+    print('El solucionador no ha podido encontrar una solución óptima.')
+
